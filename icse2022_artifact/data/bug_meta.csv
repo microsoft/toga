@@ -1,0 +1,274 @@
+project,bug_num,test_name,exception_bug,assertion_bug,exception_lbl,assert_err,assertion_lbl
+Cli,15,org.apache.commons.cli2.commandline.WriteableCommandLineImpl_ESTest::test12,0,1,0, expected:<2> but was:<1>,"assertEquals(2, list1.size())"
+Cli,17,org.apache.commons.cli.PosixParser_ESTest::test3,0,1,0, expected:<3> but was:<21>,"assertEquals(3, stringArray1.length)"
+Cli,18,org.apache.commons.cli.PosixParser_ESTest::test4,0,1,0, expected:<2> but was:<1>,"assertEquals(2, stringArray1.length)"
+Cli,22,org.apache.commons.cli.PosixParser_ESTest::test4,0,1,0, expected:<5> but was:<6>,"assertEquals(5, stringArray2.length)"
+Cli,25,org.apache.commons.cli.HelpFormatter_ESTest::test26,0,1,0, expected:<37> but was:<171>,"assertEquals(37, stringBuffer0.length())"
+Cli,29,org.apache.commons.cli.Util_ESTest::test6,0,1,0," expected:<[""]qDxD_5>q,)`dEgM> but was:<[]qDxD_5>q,)`dEgM>","assertEquals(""\""qDxD_5>q,)`dEgM"", string0)"
+Cli,29,org.apache.commons.cli.Util_ESTest::test8,0,1,0," expected:<""["" |B_#""]> but was:<""[ |B_#]>","assertEquals(""\""\"" |B_#\"""", string0)"
+Cli,31,org.apache.commons.cli.Option_ESTest::test20,0,1,0,assertTrue(Assert.java:41),assertFalse(boolean0)
+Cli,34,org.apache.commons.cli.Option_ESTest::test09,0,1,0,assertTrue(Assert.java:41),assertNotNull(object0)
+Cli,34,org.apache.commons.cli.Option_ESTest::test34,0,1,0, expected:<[ option:   ::  [:: class java.lang.String ]]> but was:<[ option:   ::  []]>,"assertEquals(""[ option:   ::  :: class java.lang.String ]"", string0)"
+Cli,34,org.apache.commons.cli.Option_ESTest::test33,0,1,0, expected:<...4U-w?C*  [ARG] ::  [:: class java.lang.String ]]> but was:<...4U-w?C*  [ARG] ::  []]>,"assertEquals(""[ option:  X84U-w?C*  [ARG] ::  :: class java.lang.String ]"", string0)"
+Cli,34,org.apache.commons.cli.Option_ESTest::test23,0,1,0, expected:<...tion:  [ARG...] ::  [:: class java.lang.String ]]> but was:<...tion:  [ARG...] ::  []]>,"assertEquals(""[ option:  [ARG...] ::  :: class java.lang.String ]"", string0)"
+Codec,4,org.apache.commons.codec.binary.Base64_ESTest::test37,0,1,0,assertTrue(Assert.java:41),assertFalse(boolean0)
+Codec,4,org.apache.commons.codec.binary.Base64_ESTest::test34,0,1,0, expected:<2> but was:<0>,"assertEquals(2, byteArray1.length)"
+Codec,11,org.apache.commons.codec.net.QuotedPrintableCodec_ESTest::test05,0,1,0, expected:<166> but was:<153>,"assertEquals(166, byteArray4.length)"
+Codec,11,org.apache.commons.codec.net.QuotedPrintableCodec_ESTest::test04,0,1,0, expected:<90> but was:<87>,"assertEquals(90, byteArray3.length)"
+Codec,11,org.apache.commons.codec.net.QuotedPrintableCodec_ESTest::test07,0,1,0, expected:<12> but was:<10>,"assertEquals(12, byteArray1.length)"
+Codec,11,org.apache.commons.codec.net.QuotedPrintableCodec_ESTest::test06,0,1,0, expected:<80> but was:<75>,"assertEquals(80, byteArray3.length)"
+Codec,12,org.apache.commons.codec.binary.BaseNCodecInputStream_ESTest::test10,0,1,0, expected:<0> but was:<-4095>,"assertEquals(0L, long0)"
+Codec,12,org.apache.commons.codec.binary.BaseNCodecInputStream_ESTest::test11,0,1,0, expected:<1> but was:<3>,"assertEquals(1, int0)"
+Codec,12,org.apache.commons.codec.binary.BaseNCodecInputStream_ESTest::test12,0,1,0, expected:<0> but was:<3>,"assertEquals(0, int0)"
+Compress,1,org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream_ESTest::test06,0,1,0, expected:<[0707020000000000000000000000000000000000000001ffffffff00000000000000000000000000000000000000000000000b00000000TRAILER!!!,"assertEquals(""0707020000000000000000000000000000000000000001ffffffff00000000000000000000000000000000000000000000000b00000000TRAILER!!!\u0000\u0000\u0000\u0000"", byteArrayOutputStream0.toString())"
+Compress,1,org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream_ESTest::test01,0,1,0, expected:<[q�,"assertEquals(""q\uFFFD\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0000\uFFFD\uFFFD\uFFFD\uFFFD\u0000\u000B\u0000\u0000\u0000\u0000TRAILER!!!\u0000\u0000"", byteArrayOutputStream0.toString())"
+Compress,1,org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream_ESTest::test21,0,1,0, expected:<[0707010000000000000000000000000000000000000001ffffffff00000000000000000000000000000000000000000000000b00000000TRAILER!!!,"assertEquals(""0707010000000000000000000000000000000000000001ffffffff00000000000000000000000000000000000000000000000b00000000TRAILER!!!\u0000\u0000\u0000\u0000"", byteArrayOutputStream0.toString())"
+Compress,1,org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream_ESTest::test04,0,1,0, expected:<[0707070000000000000000000000000000000000010000007777777777700001300000000000TRAILER!!!,"assertEquals(""0707070000000000000000000000000000000000010000007777777777700001300000000000TRAILER!!!\u0000"", byteArrayOutputStream0.toString())"
+Compress,4,org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream_ESTest::test10,0,1,0, expected:<0> but was:<38>,"assertEquals(0, byteArrayOutputStream0.size())"
+Compress,4,org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream_ESTest::test22,0,1,0, expected:<0> but was:<22>,"assertEquals(0, byteArrayOutputStream0.size())"
+Compress,6,org.apache.commons.compress.archivers.zip.ZipArchiveEntry_ESTest::test29,0,1,0,assertTrue(Assert.java:41),assertFalse(boolean0)
+Compress,9,org.apache.commons.compress.archivers.tar.TarArchiveOutputStream_ESTest::test07,0,1,0, expected:<10240> but was:<0>,"assertEquals(10240L, tarArchiveOutputStream0.getBytesWritten())"
+Compress,34,org.apache.commons.compress.archivers.zip.X7875_NewUnix_ESTest::test04,0,1,0, expected:<0> but was:<7>,"assertEquals(0, zipShort0.getValue())"
+Compress,43,org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream_ESTest::test33,0,1,0, expected:<[,"assertEquals(""\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"", byteArrayOutputStream0.toString())"
+Compress,43,org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream_ESTest::test18,0,1,0, expected:<...������������PK,"assertEquals(""PK\u0003\u0004\u0014\u0000\b\b\b\u0000\uFFFD\uFFFDND\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\u0000PK\u0007\b\u0000\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000\uFFFD\uFFFDND\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000PK\u0007\b\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFDPK\u0003\u0004\u0014\u0000\u0000\b\b\u0000\uFFFD\uFFFDND\u0000\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"", byteArrayOutputStream0.toString())"
+Csv,3,org.apache.commons.csv.Lexer_ESTest::test07,0,1,0, expected:<-1> but was:<85>,"assertEquals(-1, int0)"
+Csv,3,org.apache.commons.csv.Lexer_ESTest::test10,0,1,0, expected:<-1> but was:<103>,"assertEquals(-1, int1)"
+Csv,12,org.apache.commons.csv.CSVFormat_ESTest::test35,0,1,0,assertTrue(Assert.java:41),assertTrue(cSVFormat1.getAllowMissingColumnNames())
+Csv,12,org.apache.commons.csv.CSVFormat_ESTest::test11,0,1,0,assertTrue(Assert.java:41),assertTrue(cSVFormat1.getAllowMissingColumnNames())
+Csv,12,org.apache.commons.csv.CSVFormat_ESTest::test33,0,1,0,assertTrue(Assert.java:41),assertTrue(cSVFormat1.getAllowMissingColumnNames())
+Csv,12,org.apache.commons.csv.CSVFormat_ESTest::test40,0,1,0,assertTrue(Assert.java:41),assertTrue(cSVFormat1.getAllowMissingColumnNames())
+Csv,12,org.apache.commons.csv.CSVFormat_ESTest::test29,0,1,0,assertTrue(Assert.java:41),assertTrue(cSVFormat1.getAllowMissingColumnNames())
+Csv,12,org.apache.commons.csv.CSVFormat_ESTest::test23,0,1,0,assertTrue(Assert.java:41),assertTrue(cSVFormat1.getAllowMissingColumnNames())
+Csv,13,org.apache.commons.csv.CSVFormat_ESTest::test11,0,1,0, expected:<\N> but was:<null>,"assertEquals(""\\N"", cSVFormat1.getNullString())"
+Csv,13,org.apache.commons.csv.CSVFormat_ESTest::test02,0,1,0, expected:<\N> but was:<null>,"assertEquals(""\\N"", cSVFormat1.getNullString())"
+Csv,13,org.apache.commons.csv.CSVFormat_ESTest::test45,0,1,0, expected:<...iter=<	> Escape=<\> [NullString=<\N> ]RecordSeparator=<,"assertEquals(""Delimiter=<\t> Escape=<\\> NullString=<\\N> RecordSeparator=<\n> SkipHeaderRecord:false Header:[]"", string0)"
+Csv,13,org.apache.commons.csv.CSVFormat_ESTest::test33,0,1,0, expected:<\N> but was:<null>,"assertEquals(""\\N"", cSVFormat1.getNullString())"
+Csv,13,org.apache.commons.csv.CSVFormat_ESTest::test34,0,1,0, expected:<\N> but was:<null>,"assertEquals(""\\N"", cSVFormat1.getNullString())"
+Csv,13,org.apache.commons.csv.CSVFormat_ESTest::test25,0,1,0, expected:<\N> but was:<null>,"assertEquals(""\\N"", cSVFormat2.getNullString())"
+Csv,13,org.apache.commons.csv.CSVFormat_ESTest::test21,0,1,0, expected:<\N> but was:<null>,"assertEquals(""\\N"", cSVFormat1.getNullString())"
+Csv,13,org.apache.commons.csv.CSVFormat_ESTest::test23,0,1,0, expected:<\N> but was:<null>,"assertEquals(""\\N"", cSVFormat1.getNullString())"
+JacksonCore,4,com.fasterxml.jackson.core.util.TextBuffer_ESTest::test45,0,1,0, expected:<327680> but was:<262145>,"assertEquals(327680, charArray1.length)"
+JacksonCore,7,com.fasterxml.jackson.core.json.JsonWriteContext_ESTest::test12,0,1,0, expected:<5> but was:<2>,"assertEquals(5, int0)"
+JacksonCore,8,com.fasterxml.jackson.core.util.TextBuffer_ESTest::test27,0,1,0,assertTrue(Assert.java:41),assertNotNull(charArray0)
+JacksonCore,22,com.fasterxml.jackson.core.filter.FilteringParserDelegate_ESTest::test50,0,1,0, expected:<1> but was:<0>,"assertEquals(1, filteringParserDelegate0.getMatchCount())"
+JacksonCore,22,com.fasterxml.jackson.core.filter.FilteringParserDelegate_ESTest::test43,0,1,0, expected:<1> but was:<0>,"assertEquals(1, filteringParserDelegate0.getMatchCount())"
+JacksonCore,22,com.fasterxml.jackson.core.filter.FilteringParserDelegate_ESTest::test67,0,1,0, expected:<1> but was:<0>,"assertEquals(1, filteringParserDelegate0.getMatchCount())"
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test08,0,1,0,assertTrue(Assert.java:41),assertFalse(mapDeserializer0.isCachable())
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test09,0,1,0,assertTrue(Assert.java:41),assertFalse(mapDeserializer0.isCachable())
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test07,0,1,0,assertTrue(Assert.java:41),assertFalse(mapDeserializer0.isCachable())
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test02,0,1,0,assertTrue(Assert.java:41),assertFalse(mapDeserializer0.isCachable())
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test01,0,1,0,assertTrue(Assert.java:41),assertFalse(mapDeserializer1.isCachable())
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test20,0,1,0,assertTrue(Assert.java:41),assertFalse(boolean0)
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test18,0,1,0,assertTrue(Assert.java:41),assertFalse(boolean0)
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test15,0,1,0,assertTrue(Assert.java:41),assertFalse(mapDeserializer0.isCachable())
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test13,0,1,0,assertTrue(Assert.java:41),assertFalse(mapDeserializer0.isCachable())
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test11,0,1,0,assertTrue(Assert.java:41),assertFalse(mapDeserializer0.isCachable())
+JacksonDatabind,12,com.fasterxml.jackson.databind.deser.std.MapDeserializer_ESTest::test10,0,1,0,assertTrue(Assert.java:41),assertFalse(mapDeserializer0.isCachable())
+JacksonDatabind,36,com.fasterxml.jackson.databind.util.StdDateFormat_ESTest::test14,0,1,0,assertTrue(Assert.java:41),assertFalse(boolean0)
+JacksonDatabind,49,com.fasterxml.jackson.databind.ser.impl.WritableObjectId_ESTest::test4,0,1,0, expected:<-1> but was:<0>,"assertEquals(-1, object1)"
+JacksonDatabind,99,com.fasterxml.jackson.databind.type.ReferenceType_ESTest::test03,0,1,0," expected:<...ect<java.lang.Object[>]<[simple type, class...> but was:<...ect<java.lang.Object[]<[simple type, class...>","assertEquals(""[reference type, class java.lang.Object<java.lang.Object><[simple type, class java.lang.Object]>]"", string0)"
+JacksonDatabind,105,com.fasterxml.jackson.databind.deser.std.JdkDeserializers_ESTest::test5,0,1,0,assertTrue(Assert.java:41),assertNotNull(jsonDeserializer0)
+Jsoup,4,org.jsoup.nodes.Entities_ESTest::test3,0,1,0, expected:<Fo&percnt;&[H]at;&rsqb;N&equals;&l...> but was:<Fo&percnt;&[h]at;&rsqb;N&equals;&l...>,"assertEquals(""Fo&percnt;&Hat;&rsqb;N&equals;&lcub;&midast;&excl;BXG&apos;NZQ"", string0)"
+Jsoup,4,org.jsoup.nodes.Entities_ESTest::test4,0,1,0, expected:<Fo%[^]]N={*!BXG'NZQ> but was:<Fo%[&Hat;]]N={*!BXG'NZQ>,"assertEquals(""Fo%^]N={*!BXG'NZQ"", string0)"
+Jsoup,16,org.jsoup.nodes.DocumentType_ESTest::test1,0,1,0, expected:<<!DOCTYPE []>> but was:<<!DOCTYPE [html]>>,"assertEquals(""<!DOCTYPE >"", stringBuilder0.toString())"
+Jsoup,16,org.jsoup.nodes.DocumentType_ESTest::test0,0,1,0," expected:<<!DOCTYPE [/:u'$8-DkwD}/:5 PUBLIC ""/:u'$8-DkwD}/:5"" ""]/:u'$8-DkwD}/:5"">> but was:<<!DOCTYPE [html PUBLIC ""/:u'$8-DkwD}/:5"" ]/:u'$8-DkwD}/:5"">>","assertEquals(""<!DOCTYPE /:u'$8-DkwD}/:5 PUBLIC \""/:u'$8-DkwD}/:5\"" \""/:u'$8-DkwD}/:5\"">"", string0)"
+Jsoup,19,org.jsoup.safety.Whitelist_ESTest::test10,0,1,0,assertTrue(Assert.java:41),assertTrue(boolean0)
+Jsoup,30,org.jsoup.safety.Cleaner_ESTest::test0,0,1,0,assertTrue(Assert.java:41),assertFalse(boolean0)
+Jsoup,41,org.jsoup.nodes.Element_ESTest::test69,0,1,0,assertTrue(Assert.java:41),assertTrue(boolean0)
+Jsoup,47,org.jsoup.nodes.Entities_ESTest::test10,0,1,0, expected:<]?`?[&lt;]DQr@*K> but was:<]?`?[<]DQr@*K>,"assertEquals(""]?`?&lt;DQr@*K"", stringBuilder0.toString())"
+Jsoup,52,org.jsoup.nodes.XmlDeclaration_ESTest::test1,0,1,0, expected:<<?t4N7&Q[?]>> but was:<<?t4N7&Q[]>>,"assertEquals(""<?t4N7&Q?>"", string0)"
+Jsoup,52,org.jsoup.nodes.XmlDeclaration_ESTest::test2,0,1,0," expected:<[]> but was:<[n/(:P!,Rl&n<F63$O]>","assertEquals("""", string0)"
+Jsoup,52,org.jsoup.nodes.XmlDeclaration_ESTest::test3,0,1,0, expected:<<![!]>> but was:<<![]>>,"assertEquals(""<!!>"", string0)"
+Jsoup,83,org.jsoup.parser.CharacterReader_ESTest::test31,0,1,0, expected:<0> but was:<11>,"assertEquals(0, characterReader0.pos())"
+Jsoup,88,org.jsoup.nodes.Attribute_ESTest::test04,0,1,0, expected:<> but was:<null>,"assertEquals("""", attribute1.getValue())"
+Jsoup,88,org.jsoup.nodes.Attribute_ESTest::test25,0,1,0, expected:<> but was:<null>,"assertEquals("""", attribute0.getValue())"
+Jsoup,88,org.jsoup.nodes.Attribute_ESTest::test23,0,1,0,assertTrue(Assert.java:41),assertTrue(attribute0.equals((Object)attribute1))
+Jsoup,88,org.jsoup.nodes.Attribute_ESTest::test20,0,1,0, expected:<> but was:<null>,"assertEquals("""", attribute0.getValue())"
+JxPath,8,org.apache.commons.jxpath.ri.compiler.CoreOperationRelationalExpression_ESTest::test2,0,1,0, expected:<false> but was:<true>,"assertEquals(false, object0)"
+JxPath,12,org.apache.commons.jxpath.ri.model.dom.DOMNodePointer_ESTest::test24,0,1,0,assertTrue(Assert.java:41),assertTrue(boolean0)
+JxPath,14,org.apache.commons.jxpath.ri.compiler.CoreFunction_ESTest::test79,0,1,0, expected:<NaN> but was:<0.0>,"assertEquals(Double.NaN, object0)"
+JxPath,16,org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointer_ESTest::test30,0,1,0,assertTrue(Assert.java:41),assertTrue(boolean0)
+JxPath,22,org.apache.commons.jxpath.ri.model.dom.DOMNodePointer_ESTest::test65,0,1,0, expected:</[xmlns][1]> but was:</[node()][1]>,"assertEquals(""/xmlns[1]"", string0)"
+Lang,23,org.apache.commons.lang3.text.ExtendedMessageFormat_ESTest::test08,0,1,0,assertTrue(Assert.java:41),assertFalse(boolean0)
+Lang,41,org.apache.commons.lang.ClassUtils_ESTest::test11,0,1,0, expected:<[JNM-[]]> but was:<[[LJNM-;]>,"assertEquals(""JNM-[]"", string0)"
+Lang,41,org.apache.commons.lang.ClassUtils_ESTest::test12,0,1,0, expected:<[]][]> but was:<[][]>,"assertEquals(""][]"", string0)"
+Lang,41,org.apache.commons.lang.ClassUtils_ESTest::test13,0,1,0, expected:<[LJNM-[][]]> but was:<[[[LJNM-]>,"assertEquals(""LJNM-[][]"", string0)"
+Lang,41,org.apache.commons.lang.ClassUtils_ESTest::test14,0,1,0, expected:<[byte]> but was:<[B]>,"assertEquals(""byte"", string0)"
+Lang,46,org.apache.commons.lang.StringEscapeUtils_ESTest::test09,0,1,0, expected:<OZw9N)RwzH[]/> but was:<OZw9N)RwzH[\]/>,"assertEquals(""OZw9N)RwzH/"", string0)"
+Lang,49,org.apache.commons.lang.math.Fraction_ESTest::test28,0,1,0, expected:<1> but was:<394>,"assertEquals(1, fraction1.getDenominator())"
+Lang,52,org.apache.commons.lang.StringEscapeUtils_ESTest::test08,0,1,0, expected:<<<\\u+ob%jNBH[\]/> but was:<<<\\u+ob%jNBH[]/>,"assertEquals(""<<\\\\u+ob%jNBH\\/"", string1)"
+Lang,52,org.apache.commons.lang.StringEscapeUtils_ESTest::test09,0,1,0, expected:<3b#H[\]/LYs'XYVNA3|'T> but was:<3b#H[]/LYs'XYVNA3|'T>,"assertEquals(""3b#H\\/LYs'XYVNA3|'T"", string0)"
+Lang,65,org.apache.commons.lang.time.DateUtils_ESTest::test53,0,1,0," expected:<...gorianCalendar[time=[1392409281000,areFieldsSet=tru]e,areAllFieldsSet=tr...> but was:<...gorianCalendar[time=[?,areFieldsSet=fals]e,areAllFieldsSet=tr...>","assertEquals(""org.evosuite.runtime.mock.java.util.MockGregorianCalendar[time=1392409281000,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id=\""GMT\"",offset=0,dstSavings=0,useDaylight=false,transitions=0,lastRule=null],firstDayOfWeek=1,minimalDaysInFirstWeek=1,ERA=1,YEAR=2014,MONTH=1,WEEK_OF_YEAR=7,WEEK_OF_MONTH=3,DAY_OF_MONTH=14,DAY_OF_YEAR=45,DAY_OF_WEEK=6,DAY_OF_WEEK_IN_MONTH=2,AM_PM=1,HOUR=8,HOUR_OF_DAY=20,MINUTE=21,SECOND=21,MILLISECOND=0,ZONE_OFFSET=0,DST_OFFSET=0]"", calendar1.toString())"
+Lang,65,org.apache.commons.lang.time.DateUtils_ESTest::test54,0,1,0, expected:<Fri Feb 14 20:21:[00] GMT 2014> but was:<Fri Feb 14 20:21:[21] GMT 2014>,"assertEquals(""Fri Feb 14 20:21:00 GMT 2014"", date0.toString())"
+Math,23,org.apache.commons.math3.optimization.univariate.BrentOptimizer_ESTest::test4,0,1,0, expected:<-2207.0263> but was:<5391726.072721845>,"assertEquals((-2207.0263), univariatePointValuePair0.getPoint(), 0.01)"
+Math,23,org.apache.commons.math3.optimization.univariate.BrentOptimizer_ESTest::test7,0,1,0, expected:<0.06666666666666667> but was:<-3895.8130021976535>,"assertEquals(0.06666666666666667, univariatePointValuePair0.getPoint(), 0.01)"
+Math,23,org.apache.commons.math3.optimization.univariate.BrentOptimizer_ESTest::test6,0,1,0, expected:<1.9017692579836876E-4> but was:<0.5469117135978396>,"assertEquals(1.9017692579836876E-4, univariatePointValuePair0.getPoint(), 0.01)"
+Math,66,org.apache.commons.math.optimization.univariate.BrentOptimizer_ESTest::test4,0,1,0, expected:<21> but was:<32>,"assertEquals(21, brentOptimizer0.getIterationCount())"
+Math,66,org.apache.commons.math.optimization.univariate.BrentOptimizer_ESTest::test2,0,1,0, expected:<56> but was:<24>,"assertEquals(56, brentOptimizer0.getEvaluations())"
+Math,95,org.apache.commons.math.distribution.FDistributionImpl_ESTest::test4,0,1,0, expected:<1.0> but was:<-1.0>,"assertEquals(1.0, double0, 0.01)"
+Gson,4,com.google.gson.stream.JsonReader_ESTest::test39,1,0,0,
+Gson,4,com.google.gson.stream.JsonReader_ESTest::test41,1,0,0,
+Gson,4,com.google.gson.stream.JsonReader_ESTest::test42,1,0,0,
+Gson,4,com.google.gson.stream.JsonReader_ESTest::test45,1,0,0,
+Gson,4,com.google.gson.stream.JsonReader_ESTest::test49,1,0,0,
+Gson,4,com.google.gson.stream.JsonReader_ESTest::test68,1,0,0,
+Gson,4,com.google.gson.stream.JsonWriter_ESTest::test18,1,0,0,
+Gson,4,com.google.gson.stream.JsonWriter_ESTest::test20,1,0,0,
+Gson,7,com.google.gson.stream.JsonReader_ESTest::test59,1,0,0,
+Gson,7,com.google.gson.stream.JsonReader_ESTest::test76,1,0,0,
+Gson,9,com.google.gson.internal.bind.JsonTreeWriter_ESTest::test25,1,0,0,
+Gson,9,com.google.gson.stream.JsonWriter_ESTest::test25,1,0,0,
+JxPath,5,org.apache.commons.jxpath.ri.model.NodePointer_ESTest::test48,1,0,0,
+JxPath,6,org.apache.commons.jxpath.ri.compiler.CoreOperationCompare_ESTest::test02,1,0,0,
+JxPath,18,org.apache.commons.jxpath.ri.axes.AttributeContext_ESTest::test4,1,0,1,
+Math,35,org.apache.commons.math3.genetics.ElitisticListPopulation_ESTest::test0,1,0,1,
+Math,35,org.apache.commons.math3.genetics.ElitisticListPopulation_ESTest::test2,1,0,1,
+Math,45,org.apache.commons.math.linear.OpenMapRealMatrix_ESTest::test3,1,0,1,
+Math,85,org.apache.commons.math.analysis.solvers.UnivariateRealSolverUtils_ESTest::test07,1,0,0,
+Math,94,org.apache.commons.math.util.MathUtils_ESTest::test002,1,0,1,
+Math,94,org.apache.commons.math.util.MathUtils_ESTest::test116,1,0,1,
+Math,99,org.apache.commons.math.util.MathUtils_ESTest::test061,1,0,1,
+Math,99,org.apache.commons.math.util.MathUtils_ESTest::test062,1,0,1,
+Math,99,org.apache.commons.math.util.MathUtils_ESTest::test081,1,0,1,
+Math,78,org.apache.commons.math.ode.events.EventState_ESTest::test10,1,0,1,
+Math,78,org.apache.commons.math.ode.events.EventState_ESTest::test14,1,0,1,
+Math,78,org.apache.commons.math.ode.events.EventState_ESTest::test17,1,0,1,
+Math,97,org.apache.commons.math.analysis.BrentSolver_ESTest::test00,1,0,0,
+Math,97,org.apache.commons.math.analysis.BrentSolver_ESTest::test08,1,0,0,
+Math,97,org.apache.commons.math.analysis.BrentSolver_ESTest::test09,1,0,0,
+Cli,25,org.apache.commons.cli.HelpFormatter_ESTest::test28,1,0,0,
+Cli,24,org.apache.commons.cli.HelpFormatter_ESTest::test32,1,0,0,
+Cli,40,org.apache.commons.cli.TypeHandler_ESTest::test10,1,0,1,
+Cli,5,org.apache.commons.cli.Util_ESTest::test2,1,0,0,
+Cli,8,org.apache.commons.cli.HelpFormatter_ESTest::test27,1,0,0,
+Cli,32,org.apache.commons.cli.HelpFormatter_ESTest::test24,1,0,0,
+Cli,32,org.apache.commons.cli.HelpFormatter_ESTest::test25,1,0,0,
+Cli,23,org.apache.commons.cli.HelpFormatter_ESTest::test29,1,0,0,
+Cli,22,org.apache.commons.cli.PosixParser_ESTest::test1,1,0,1,
+Csv,8,org.apache.commons.csv.CSVFormat_ESTest::test12,1,0,1,
+Csv,10,org.apache.commons.csv.CSVPrinter_ESTest::test09,1,0,1,
+Csv,6,org.apache.commons.csv.CSVRecord_ESTest::test17,1,0,0,
+Codec,14,org.apache.commons.codec.language.bm.PhoneticEngine_ESTest::test5,1,0,1,
+Codec,11,org.apache.commons.codec.net.QuotedPrintableCodec_ESTest::test09,1,0,0,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test00,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test01,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test02,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test03,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test04,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test05,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test06,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test07,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test08,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test09,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test10,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test11,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test12,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test13,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test14,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test15,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test16,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test17,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test18,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test19,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test20,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test21,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test24,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test25,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test28,1,0,1,
+Codec,2,org.apache.commons.codec.binary.Base64_ESTest::test35,1,0,1,
+Codec,18,org.apache.commons.codec.binary.StringUtils_ESTest::test19,1,0,0,
+Jsoup,86,org.jsoup.nodes.Comment_ESTest::test6,1,0,0,
+Jsoup,89,org.jsoup.nodes.Attribute_ESTest::test07,1,0,0,
+Jsoup,89,org.jsoup.nodes.Attribute_ESTest::test18,1,0,0,
+Jsoup,89,org.jsoup.nodes.Attribute_ESTest::test24,1,0,0,
+Jsoup,89,org.jsoup.nodes.Attribute_ESTest::test26,1,0,0,
+Jsoup,37,org.jsoup.nodes.Element_ESTest::test05,1,0,1,
+Jsoup,61,org.jsoup.nodes.Element_ESTest::test08,1,0,1,
+Jsoup,61,org.jsoup.nodes.Element_ESTest::test74,1,0,1,
+Jsoup,36,org.jsoup.helper.DataUtil_ESTest::test13,1,0,0,
+Jsoup,8,org.jsoup.nodes.Node_ESTest::test08,1,0,0,
+Jsoup,60,org.jsoup.parser.TokenQueue_ESTest::test05,1,0,1,
+Jsoup,60,org.jsoup.parser.TokenQueue_ESTest::test24,1,0,1,
+Jsoup,41,org.jsoup.nodes.Element_ESTest::test37,1,0,1,
+Jsoup,32,org.jsoup.nodes.Element_ESTest::test06,1,0,1,
+Jsoup,34,org.jsoup.parser.CharacterReader_ESTest::test12,1,0,0,
+Jsoup,26,org.jsoup.safety.Cleaner_ESTest::test0,1,0,0,
+Jsoup,43,org.jsoup.nodes.Element_ESTest::test07,1,0,1,
+Jsoup,18,org.jsoup.parser.CharacterReader_ESTest::test14,1,0,0,
+Compress,27,org.apache.commons.compress.archivers.tar.TarUtils_ESTest::test00,1,0,0,
+Compress,4,org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream_ESTest::test23,1,0,0,
+Compress,4,org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream_ESTest::test10,1,0,1,
+Compress,4,org.apache.commons.compress.changes.ChangeSetPerformer_ESTest::test0,1,0,1,
+Compress,44,org.apache.commons.compress.utils.ChecksumCalculatingInputStream_ESTest::test2,1,0,1,
+Compress,44,org.apache.commons.compress.utils.ChecksumCalculatingInputStream_ESTest::test3,1,0,1,
+Compress,46,org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestamp_ESTest::test27,1,0,1,
+Compress,29,org.apache.commons.compress.archivers.ArchiveStreamFactory_ESTest::test28,1,0,1,
+Compress,24,org.apache.commons.compress.archivers.tar.TarUtils_ESTest::test10,1,0,1,
+Compress,36,org.apache.commons.compress.archivers.sevenz.SevenZFile_ESTest::test0,1,0,1,
+Compress,36,org.apache.commons.compress.archivers.sevenz.SevenZFile_ESTest::test3,1,0,0,
+Compress,11,org.apache.commons.compress.archivers.ArchiveStreamFactory_ESTest::test16,1,0,1,
+Compress,8,org.apache.commons.compress.archivers.tar.TarUtils_ESTest::test02,1,0,1,
+Compress,8,org.apache.commons.compress.archivers.tar.TarUtils_ESTest::test04,1,0,1,
+Compress,41,org.apache.commons.compress.archivers.zip.ZipArchiveInputStream_ESTest::test03,1,0,1,
+Compress,2,org.apache.commons.compress.archivers.ar.ArArchiveInputStream_ESTest::test04,1,0,0,
+Compress,19,org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField_ESTest::test19,1,0,0,
+Compress,19,org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField_ESTest::test23,1,0,0,
+Compress,19,org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField_ESTest::test24,1,0,0,
+Compress,17,org.apache.commons.compress.archivers.tar.TarUtils_ESTest::test15,1,0,0,
+JacksonCore,20,com.fasterxml.jackson.core.JsonGenerator_ESTest::test45,1,0,0,
+JacksonCore,14,com.fasterxml.jackson.core.io.IOContext_ESTest::test22,1,0,0,
+JacksonCore,2,com.fasterxml.jackson.core.json.ReaderBasedJsonParser_ESTest::test26,1,0,1,
+JacksonCore,2,com.fasterxml.jackson.core.json.ReaderBasedJsonParser_ESTest::test27,1,0,1,
+JacksonCore,1,com.fasterxml.jackson.core.util.TextBuffer_ESTest::test29,1,0,1,
+JacksonCore,1,com.fasterxml.jackson.core.util.TextBuffer_ESTest::test30,1,0,1,
+JacksonCore,1,com.fasterxml.jackson.core.util.TextBuffer_ESTest::test31,1,0,1,
+JacksonCore,1,com.fasterxml.jackson.core.util.TextBuffer_ESTest::test32,1,0,1,
+JacksonCore,1,com.fasterxml.jackson.core.util.TextBuffer_ESTest::test44,1,0,1,
+JacksonCore,1,com.fasterxml.jackson.core.io.NumberInput_ESTest::test00,1,0,1,
+JacksonCore,17,com.fasterxml.jackson.core.json.UTF8JsonGenerator_ESTest::test69,1,0,1,
+JacksonDatabind,36,com.fasterxml.jackson.databind.util.StdDateFormat_ESTest::test12,1,0,0,
+JacksonDatabind,36,com.fasterxml.jackson.databind.util.StdDateFormat_ESTest::test13,1,0,0,
+JacksonDatabind,106,com.fasterxml.jackson.databind.node.TreeTraversingParser_ESTest::test34,1,0,1,
+JacksonDatabind,97,com.fasterxml.jackson.databind.node.POJONode_ESTest::test18,1,0,1,
+Lang,47,org.apache.commons.lang.text.StrBuilder_ESTest::test015,1,0,0,
+Lang,47,org.apache.commons.lang.text.StrBuilder_ESTest::test132,1,0,0,
+Lang,35,org.apache.commons.lang3.ArrayUtils_ESTest::test349,1,0,1,
+Lang,35,org.apache.commons.lang3.ArrayUtils_ESTest::test352,1,0,1,
+Lang,7,org.apache.commons.lang3.math.NumberUtils_ESTest::test035,1,0,1,
+Lang,7,org.apache.commons.lang3.math.NumberUtils_ESTest::test047,1,0,1,
+Lang,45,org.apache.commons.lang.WordUtils_ESTest::test30,1,0,0,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test00,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test01,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test02,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test17,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test21,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test23,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test25,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test27,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test29,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test30,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test31,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test33,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test34,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test36,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test37,1,0,1,
+Lang,9,org.apache.commons.lang3.time.FastDateParser_ESTest::test39,1,0,1,
+Lang,33,org.apache.commons.lang3.ClassUtils_ESTest::test73,1,0,0,
+Lang,58,org.apache.commons.lang.math.NumberUtils_ESTest::test030,1,0,0,
+Lang,36,org.apache.commons.lang3.math.NumberUtils_ESTest::test017,1,0,1,
+Lang,57,org.apache.commons.lang.LocaleUtils_ESTest::test18,1,0,0,
+Lang,57,org.apache.commons.lang.LocaleUtils_ESTest::test19,1,0,0,
+Lang,16,org.apache.commons.lang3.math.NumberUtils_ESTest::test023,1,0,1,
+Lang,16,org.apache.commons.lang3.math.NumberUtils_ESTest::test024,1,0,1,
+Lang,41,org.apache.commons.lang.ClassUtils_ESTest::test21,1,0,1,
+Lang,19,org.apache.commons.lang3.text.translate.NumericEntityUnescaper_ESTest::test2,1,0,0,
+Lang,19,org.apache.commons.lang3.text.translate.NumericEntityUnescaper_ESTest::test3,1,0,0,
+Lang,19,org.apache.commons.lang3.text.translate.NumericEntityUnescaper_ESTest::test4,1,0,0,
+Lang,19,org.apache.commons.lang3.text.translate.NumericEntityUnescaper_ESTest::test5,1,0,0,
+Lang,19,org.apache.commons.lang3.text.translate.NumericEntityUnescaper_ESTest::test6,1,0,0,
+Lang,19,org.apache.commons.lang3.text.translate.NumericEntityUnescaper_ESTest::test7,1,0,0,
+Lang,19,org.apache.commons.lang3.text.translate.NumericEntityUnescaper_ESTest::test8,1,0,0,
+Lang,18,org.apache.commons.lang3.time.FastDateFormat_ESTest::test03,1,0,0,
+Lang,18,org.apache.commons.lang3.time.FastDateFormat_ESTest::test23,1,0,0,
+Lang,18,org.apache.commons.lang3.time.FastDateFormat_ESTest::test24,1,0,0,
+Lang,18,org.apache.commons.lang3.time.FastDateFormat_ESTest::test25,1,0,0,
