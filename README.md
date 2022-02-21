@@ -41,7 +41,7 @@ icse2022_artifact/model/exceptions/pretrained/
 ```
 
 Otherwise, to install our exception and assertion pretrained models, download from: https://drive.google.com/drive/folders/1dZDxu92rZzB_LEwnAkkiy3DblxMJ6nUT?usp=sharing
-Put them in `model/exceptions/pretrained/pytorch_model.bin` and `model/assertions/pretrained/pytorch_model.bin` respectively.
+Put them in `model/exceptions/pretrained/pytorch_model.bin` and `model/assertions/pretrained/pytorch_model.bin` respectively. The models can also be downloaded from the artifact on zenodo: https://zenodo.org/record/6210589
 
 To train your own model, run 
 ```
