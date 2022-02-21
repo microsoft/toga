@@ -81,39 +81,6 @@ tar xzf evosuite_5project_tests.tar.gz
 tar xzf evosuite_tests.tar.gz
 ```
 
-## OPTIONAL Datasets - Generate from base datasets
-
-```
-cd data
-python atlas_star_datagen.py
-```
-
-The resulting dataset will be stored in ``data/atlas_star``
-
-Methods2Test\* Generation:
-To generate **Methods2Test\***, first download the methods2test dataset).
-
-```
-git clone git@github.com:microsoft/methods2test.git
-cd methods2test
-export METHODS2TEST_PATH=`pwd`
-
-cd dataset
-for f in *.bz2; do tar xf $f; done
-cd ../corpus/raw/fm
-for f in *.bz2; do tar xf $f; done
-```
-
-Navigate to the methods2test_star_gen directory and execute scripts in order. Note that these scripts can take several hours to run because they must download all projects from the methods2test dataset and parse them for docstrings, so we recommend using the provided preprocessed dataset.
-
-```
-cd data/methods2test_star_generation
-python gen_exception_dataset.py
-bash download_projects.sh
-python get_docstrings.py
-python match_docstrings.py
-```
-
 ## Evaluation
 In our paper, we evaluate three research questions (RQs). 
 
