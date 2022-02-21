@@ -275,6 +275,8 @@ def evaluate(args, model, tokenizer, checkpoint=None, prefix="", mode='dev'):
         eval_loss = eval_loss / nb_eval_steps
         if args.output_mode == "classification":
             preds_label = np.argmax(preds, axis=1)
+            for i in range(len(preds_label)):
+                preds_label[i] = int(preds_label[i] or preds[i][1] > -5.5)
 
         if args.print_results:
             cor, incor = 0, 0 

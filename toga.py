@@ -31,11 +31,8 @@ def main():
 
 
     # EXCEPT INPUTS
+    print('preparing exception model inputs')
     normalized_tests, kept_methods, labels, idxs = exception_data.get_model_inputs(tests, methods)
-
-    metadata['except_prefix'] = ''
-    for normalized_test, idx in zip(normalized_tests, idxs):
-        metadata.loc[idx, 'except_prefix'] = normalized_test
 
     except_data = list(zip(normalized_tests, kept_methods, labels))
     with open('except_model_inputs.csv', "w") as f:
@@ -51,13 +48,18 @@ def main():
     exception_results = results
     exception_idxs = idxs
 
-    metadata['except_pred'] = 0
+    # metadata['except_pred'] = 0
+    except_preds = [0]*len(metadata)
     for idx, result in zip(idxs, results.itertuples()):
-        metadata.except_pred[idx] = result.pred_lbl
+        # metadata.except_pred[idx] = result.pred_lbl
+        except_preds[idx] = result.pred_lbl
+    metadata['except_pred'] = except_preds
+
 
     metadata['except_correct'] = metadata.except_pred == metadata.exception_lbl
 
     # ASSERT INPUTS
+    print('preparing assertion model inputs')
     vocab = np.load('data/evo_vocab.npy', allow_pickle=True).item()
     
     method_test_assert_data, idxs = assertion_data.get_model_inputs(tests, methods, vocab)
@@ -65,10 +67,6 @@ def main():
     assert_inputs_df = pd.DataFrame(method_test_assert_data, columns=["label","fm","test","assertion"])
     assert_inputs_df['idx'] = idxs
     assert_inputs_df.to_csv('assert_model_inputs.csv')
-
-    metadata['assert_prefix'] = ''
-    for row in assert_inputs_df.itertuples():
-        metadata.loc[row.idx, 'assert_prefix'] = row.test
 
     # ASSERT MODEL
     res = sp.run('bash ./model/assertions/run_eval.sh assert_model_inputs.csv'.split(), env=os.environ.copy())
@@ -81,13 +79,14 @@ def main():
 
     assertion_results = ranking.rank_assertions(model_preds[1:], idxs)
 
-    metadata['assert_pred'] = ''
-    metadata['assert_trunc'] = 0
+    # metadata['assert_pred'] = ''
+    # metadata['assert_trunc'] = 0
+    assert_preds = ['']*len(metadata)
 
     for assertion_result in assertion_results:
         idx, pred_assert, trunc = assertion_result
-        metadata.loc[idx, 'assert_pred'] = pred_assert
-        metadata.loc[idx, 'assert_trunc'] = trunc
+        assert_preds[idx] = pred_assert
+    metadata['assert_pred'] = assert_preds
 
         
     # write oracle predictions
@@ -98,10 +97,6 @@ def main():
         w.writerow('project,bug_num,test_name,test_prefix,except_pred,assert_pred'.split(','))
         for orig_test, meta in zip(tests, metadata.itertuples()):
             test_prefix = orig_test
-            # if (meta.except_pred or not meta.assert_pred) and meta.except_prefix:
-                # test_prefix = meta.except_prefix
-            # elif (not meta.except_pred and meta.assert_pred and meta.assert_prefix):
-                # test_prefix = meta.assert_prefix
             except_pred = meta.except_pred
             assert_pred = meta.assert_pred
             if except_pred:
@@ -111,20 +106,6 @@ def main():
             test_name = meta.test_name
 
             w.writerow([project, bug_num, test_name, test_prefix, except_pred, assert_pred])
-
-
-        
-
-    # with open(pred_file, 'w') as f:
-        # for idx, row in metadata.iterrows():
-            # except_pred = row['except_pred']
-            # assert_pred = row['assert_pred']
-            # if except_pred:
-                # assert_pred = ''
-            # oracle_data = {'idx':idx, 'exception_pred':except_pred, 'assertion_pred':assert_pred}
-            # oracle_json = json.dumps(oracle_data)
-
-            # f.write(oracle_json + '\n')
 
     print(f'wrote oracle predictions to {pred_file}')
 
@@ -156,16 +137,29 @@ def main():
             metadata.loc[i, 'assert_correct'] = assertion_lbl_base == row.assert_pred
 
     metadata['assert_bug_found'] = metadata.assert_correct & metadata.assertion_bug & (metadata.except_pred == 0)
-    metadata['except_bug_found'] = (metadata.except_correct & metadata.exception_bug)
-    metadata['except_bug_found_with_asserts'] = (metadata.except_correct & metadata.exception_bug) & ((metadata.except_pred == 1) | ((metadata.assert_pred == '') | metadata.assert_correct))
+    metadata['except_bug_found'] = (metadata.except_correct & metadata.exception_bug) & ((metadata.except_pred == 1) | ((metadata.assert_pred == '') | metadata.assert_correct))
+
+    metadata['expected_except_bug'] = False
+    metadata['unexpected_except_bug'] = False
+    for i, row in enumerate(metadata.itertuples()):
+        # if row.exception_bug:
+        if row.except_bug_found:
+            if 'Expecting exception:' in row.assert_err:
+                metadata.loc[i, 'expected_except_bug'] = True
+
+            # this error message indicates the wrong exception was thrown
+            # our expected exception oracle cannot not catch this
+            elif 'Exception was not thrown in' in row.assert_err:
+                metadata.loc[i, 'except_bug_found'] = False
+
+            else:
+                metadata.loc[i, 'unexpected_except_bug'] = True
 
 
     metadata['bug_found'] = metadata.assert_bug_found | metadata.except_bug_found
 
-    bug_df = metadata.groupby(['project', 'bug_num']).sum()
-    bug_df.assert_bug_found = bug_df.assert_bug_found.astype(bool)
-    bug_df.except_bug_found = bug_df.except_bug_found.astype(bool)
-
+    bug_df = metadata.groupby(['project', 'bug_num']).sum().astype(bool)
+    
     # FP rate:
     metadata['tp'] = 0
     metadata['fp'] = 0
@@ -203,10 +197,13 @@ def main():
 
     metadata.to_csv('results.csv')
 
-    print('bugs found with exception oracles:', bug_df.except_bug_found_with_asserts.astype(bool).sum())
-    print('bugs found with assertion oracles:', bug_df.assert_bug_found.astype(bool).sum())
-    print('total bugs found (exception and assertion bugs may overlap):', bug_df.bug_found.astype(bool).sum())
-    print('Estimated FP rate (overstimates on some tests, execute generated tests for exact FP rate):', fps / (fps + tns))
+    print('Bugs found with exception oracles:', bug_df.except_bug_found.astype(bool).sum())
+    # print('Bugs found with expected exception oracles:', (bug_df.expected_except_bug).astype(bool).sum())
+    # print('Bugs found with unexpected exception oracles:', (bug_df.unexpected_except_bug).astype(bool).sum())
+    print('Bugs found with assertion oracles:', bug_df.assert_bug_found.astype(bool).sum())
+    print('Total bugs found (Note: some bugs may be detected by both exception and asssertion oracles):', bug_df.bug_found.astype(bool).sum())
+    print('Estimated FP rate (Note: run 5 project sample or entire benchmark for accurate FP rate):', fps / (fps + tns))
+
 
     
 if __name__=='__main__':
