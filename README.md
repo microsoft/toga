@@ -26,6 +26,7 @@ Requirements: `python3.9`, `git lfs`
 First, clone this repo and install the dependencies:    
 ```
 cd toga/    
+git lfs pull
 pip install -r requirements.txt
 git clone https://gitlab.com/cawatson/atlas---deep-learning-assert-statements.git
 export ATLAS_PATH=<path_to_atlas...>/atlas---deep-learning-assert-statements/  
