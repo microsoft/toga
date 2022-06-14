@@ -36,7 +36,7 @@ def main():
 
     except_data = list(zip(normalized_tests, kept_methods, labels))
     with open('except_model_inputs.csv', "w") as f:
-        w = csv.writer(f) 
+        w = csv.writer(f)
         w.writerow(["label", "test", "fm"])
         for test, method, label in except_data:
             w.writerow([label, test, method])
@@ -61,7 +61,7 @@ def main():
     # ASSERT INPUTS
     print('preparing assertion model inputs')
     vocab = np.load('data/evo_vocab.npy', allow_pickle=True).item()
-    
+
     method_test_assert_data, idxs = assertion_data.get_model_inputs(tests, methods, vocab)
 
     assert_inputs_df = pd.DataFrame(method_test_assert_data, columns=["label","fm","test","assertion"])
@@ -73,7 +73,7 @@ def main():
 
     model_preds = []
     with open("assertion_preds.csv") as f:
-        reader = csv.reader(f) 
+        reader = csv.reader(f)
         for row in reader:
             model_preds += [row]
 
@@ -88,7 +88,7 @@ def main():
         assert_preds[idx] = pred_assert
     metadata['assert_pred'] = assert_preds
 
-        
+
     # write oracle predictions
     pred_file = 'oracle_preds.csv'
 
@@ -159,7 +159,7 @@ def main():
     metadata['bug_found'] = metadata.assert_bug_found | metadata.except_bug_found
 
     bug_df = metadata.groupby(['project', 'bug_num']).sum().astype(bool)
-    
+
     # FP rate:
     metadata['tp'] = 0
     metadata['fp'] = 0
@@ -195,7 +195,7 @@ def main():
     tns = metadata.tn.sum()
     fns = metadata.fn.sum()
 
-    metadata.to_csv('results.csv')
+    metadata[['project', 'bug_num', 'test_name', 'except_pred', 'assert_pred', 'except_correct', 'assert_correct', 'bug_found']].to_csv('results.csv')
 
     print('Bugs found with exception oracles:', bug_df.except_bug_found.astype(bool).sum())
     # print('Bugs found with expected exception oracles:', (bug_df.expected_except_bug).astype(bool).sum())
@@ -205,7 +205,7 @@ def main():
     print('Estimated FP rate (Note: run 5 project sample or entire benchmark for accurate FP rate):', fps / (fps + tns))
 
 
-    
+
 if __name__=='__main__':
     main()
 
