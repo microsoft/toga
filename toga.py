@@ -59,7 +59,6 @@ def main():
     metadata['except_pred'] = except_preds
 
 
-    metadata['except_correct'] = metadata.except_pred == metadata.exception_lbl
 
     # ASSERT INPUTS
     print('preparing assertion model inputs')
@@ -118,6 +117,7 @@ def main():
         sys.exit()
 
 
+    metadata['except_correct'] = metadata.except_pred == metadata.exception_lbl
     metadata['assert_correct'] = metadata.assert_pred == metadata.assertion_lbl
     if 'assert_err' not in metadata.columns:
         metadata['assert_err'] = ''
