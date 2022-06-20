@@ -7,6 +7,9 @@ import model.exception_data as exception_data
 import model.assertion_data as assertion_data
 import model.ranking as ranking
 
+
+pd.options.mode.chained_assignment = None
+
 pd.set_option("display.max_rows", None)
 pd.set_option("display.max_columns", None)
 pd.set_option('display.width', None)
@@ -27,19 +30,19 @@ def main():
 
     metadata['id'] = metadata.project + metadata.bug_num.astype(str) + metadata.test_name
 
-    methods, tests = fm_test_pairs.focal_method, fm_test_pairs.test_prefix
+    methods, tests, docstrings = fm_test_pairs.focal_method, fm_test_pairs.test_prefix, fm_test_pairs.docstring
 
 
     # EXCEPT INPUTS
     print('preparing exception model inputs')
-    normalized_tests, kept_methods, labels, idxs = exception_data.get_model_inputs(tests, methods)
+    normalized_tests, kept_methods, labels, idxs = exception_data.get_model_inputs(tests, zip(methods, docstrings))
 
     except_data = list(zip(normalized_tests, kept_methods, labels))
     with open('except_model_inputs.csv', "w") as f:
         w = csv.writer(f)
-        w.writerow(["label", "test", "fm"])
-        for test, method, label in except_data:
-            w.writerow([label, test, method])
+        w.writerow(["label", "test", "fm", "docstring"])
+        for test, (method, docstring), label in except_data:
+            w.writerow([label, test, method, docstring])
 
     res = sp.run('bash ./model/exceptions/run_eval.sh except_model_inputs.csv'.split(), env=os.environ.copy())
 
@@ -175,7 +178,6 @@ def main():
         if 'assertNotNull' in meta.assert_pred and 'assertNull' not in meta.assertion_lbl\
                 and 'but was:<null>' not in row.assert_err:
                     assert_triggered = False
-
 
 
         if (except_triggered and not meta.except_correct) or (assert_triggered and not meta.assert_correct):

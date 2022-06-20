@@ -24,7 +24,7 @@ def clean(code):
 
 
 def get_block(test, start_call):
-    """ 
+    """
     Extracts block from structure: start_call( () -> <block> )
     or start_call( <obj>::<method> )
     Looks for unmatched closing parens, indicates end of inside
@@ -48,7 +48,7 @@ def get_block(test, start_call):
         block = block.split('->')[1]
     elif m := re.search(r'(\w+)::(\w+)', block):
         block = m.groups()[0] + '.' + m.groups()[1] + '()'
-    
+
     return block
 
 
@@ -87,7 +87,7 @@ def normalize_isThrownBy(test):
 
 def normalize_fail_catch(test):
     m = fail_catch_extract_re.search(test)
-    
+
     test_parts = test.split(m[0])
     block = m[1].strip()
     normalized = test_parts[0] + block +' }\n'
@@ -96,7 +96,7 @@ def normalize_fail_catch(test):
 
 def normalize_negative(test):
     m = assert_re.search(test)
-    
+
     if m:
         assert_start = m.span()[0]
         end = m.span()[1]
@@ -150,7 +150,7 @@ def prune_asserts(tests):
                 pruned = True
 
         clean_test = ';'.join(clean_test)
-                
+
         if pruned:
             if not clean_test.endswith("}"):
                 #print("adding end bracket", clean_test[-1])
@@ -164,14 +164,14 @@ def prune_asserts(tests):
 
 
 def standardize_tests(tests, methods, labels, idxs):
-    tests = [whitespace_re.sub(' ', item).strip() for item in tests]
-    methods = [whitespace_re.sub(' ', item).strip() for item in methods]
+    tests = [clean(item) for item in tests]
+    methods = [(clean(method), docstring) for (method, docstring) in methods]
 
     standard_tests, standard_methods, std_lbls = [], [], []
-   
+
     errs = 0
     idxs_out = []
-    for idx, test, method, label in zip(idxs, tests, methods, labels):
+    for idx, test, (method, docstring), label in zip(idxs, tests, methods, labels):
         try:
             # get fm name
             m = method_name_re.match(method.split('{')[0])
@@ -184,10 +184,10 @@ def standardize_tests(tests, methods, labels, idxs):
             standard_test = f'public void test'+fm_name+'() {'+test_post
 
             standard_tests += [standard_test]
-            standard_methods += [method]
+            standard_methods += [(method, docstring)]
             std_lbls += [label]
             idxs_out += [idx]
-        
+
         except Exception as e:
             errs += 1
 
@@ -203,13 +203,13 @@ def get_model_inputs(tests, methods, verbose=False):
     idxs = []
 
     normalized_tests, kept_methods, labels = [], [], []
-    for i, (test, method) in enumerate(zip(tests, methods)):
+    for i, (test, (method, docstring)) in enumerate(zip(tests, methods)):
 
         test = clean(test)
-        method = clean(method)
+        method = clean(method), docstring
 
         try:
-            
+
             if 'assertThrows' in test:
                 normalized = normalize_assertThrows(test)
                 normalized_tests += [normalized]
@@ -222,33 +222,33 @@ def get_model_inputs(tests, methods, verbose=False):
                 kept_methods += [method]
                 labels += [1]
 
-                
+
             elif 'assertThatThrownBy' in test:
                 normalized = normalize_assertThatThrownBy(test)
                 normalized_tests += [normalized]
                 kept_methods += [method]
                 labels += [1]
-                
+
             elif fail_catch_re.search(test):
                 normalized = normalize_fail_catch(test)
 
                 normalized_tests += [normalized]
                 kept_methods += [method]
                 labels += [1]
-                
+
             elif 'isThrownBy' in test:
                 normalized = normalize_isThrownBy(test)
                 normalized_tests += [normalized]
                 kept_methods += [method]
                 labels += [1]
-                
+
             else:
                 if ('exception' in test or 'Exception' in test):
                     missed += 1
 
                 normalized = normalize_negative(test)
 
-                
+
                 if empty_test_re.match(normalized):
                     empty_tests += 1
                     continue
@@ -265,17 +265,17 @@ def get_model_inputs(tests, methods, verbose=False):
             continue
 
         idxs += [i]
-        
-    
+
+
     # standard cleanup on all tests:
-    normalized_tests = [test.replace("// Undeclared exception! ", "") for test in normalized_tests] 
+    normalized_tests = [test.replace("// Undeclared exception! ", "") for test in normalized_tests]
     normalized_tests = prune_asserts(normalized_tests)
 
     normalized_tests, kept_methods, labels, std_errs, idxs = standardize_tests(normalized_tests, kept_methods, labels, idxs)
     errors += std_errs
 
     tests, methods = normalized_tests, kept_methods
-    
+
     positives = len([l for l in labels if l])
     negatives = len(labels) - positives
 

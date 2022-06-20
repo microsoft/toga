@@ -1,7 +1,7 @@
-import os, re, csv, argparse
+import os, re, csv, argparse, sys
 import javalang
 import pandas as pd
-import subprocess as sp 
+import subprocess as sp
 from tree_hugger.core import JavaParser
 from collections import defaultdict
 from copy import copy
@@ -38,7 +38,7 @@ def get_active_bugs(d4j_project_dir):
 
 
 def get_project_layout(d4j_project_dir):
-    project_layout_df = pd.read_csv(d4j_project_dir + '/dir-layout.csv',index_col=0, 
+    project_layout_df = pd.read_csv(d4j_project_dir + '/dir-layout.csv',index_col=0,
                                     names=['src_dir', 'test_dir'])
     return project_layout_df.to_dict()
 
@@ -64,7 +64,7 @@ def extract_focal_methods(class_dec, tests, all_focal_class_methods):
                 print(test_txt)
                 errs['unable_to_parse_test'] += 1
 
-                focal_methods += ['']
+                focal_methods += [('', '')]
                 continue
 
             nodes = [n for n in test_obj]
@@ -85,10 +85,10 @@ def extract_focal_methods(class_dec, tests, all_focal_class_methods):
             added = False
             for focal_method_name in fm_names:
                 for focal_class_methods in all_focal_class_methods:
-                    for (f_method_dec, f_method_text, line_nums) in focal_class_methods:
-                    
+                    for (f_method_dec, f_method_text, line_nums, docstring) in focal_class_methods:
+
                         if f_method_dec.name == focal_method_name:
-                            focal_methods += [f_method_text]
+                            focal_methods += [(f_method_text, docstring)]
                             added = True
                             break
 
@@ -96,11 +96,11 @@ def extract_focal_methods(class_dec, tests, all_focal_class_methods):
                 if added: break
 
             if not added:
-                focal_methods += ['']
+                focal_methods += [('', '')]
         except Exception as e:
             added = False
             raise e
-        
+
     return focal_methods
 
 
@@ -156,14 +156,14 @@ def get_method_txt(lines, start_line):
                     line_nums += [i+1]
                     method_collected = True
                     break
-        
+
             prev_char = char
         if method_collected:
             break
-            
+
         method_def += line
         line_nums += [i+1]
-    
+
     return method_sig, method_def, line_nums
 
 
@@ -173,10 +173,10 @@ def get_class_dec(test_file):
     try:
         with open(test_file) as f:
             class_txt = f.read()
-            
+
         with open(test_file) as f:
             class_lines = f.readlines()
-    
+
     except Exception as e:
         print('ERROR READING:', test_file)
         raise e
@@ -193,7 +193,7 @@ def get_class_dec(test_file):
 
 
 def get_classes_with_inherited(full_class_path, src_path):
-    
+
     ret_list = []
 
     while full_class_path:
@@ -202,13 +202,13 @@ def get_classes_with_inherited(full_class_path, src_path):
             class_dec, class_lines = get_class_dec(full_class_path)
         except Exception as e:
             print('ERROR parsing', full_class_path)
-            if ret_list: 
+            if ret_list:
                 return ret_list
             else:
                 raise e
 
         ret_list += [(class_dec, class_lines)]
-    
+
         full_class_path = None
 
         # get import list
@@ -236,16 +236,16 @@ def extract_all_methods(class_dec, class_lines):
         if method_def.count("@Test") > 1:
             continue
 
-        methods.append((method, method_def, line_nums))
+        methods.append((method, method_def, line_nums, method.documentation))
 
     for method in class_dec.methods:
         method_sig, method_def, line_nums = get_method_txt(class_lines, method.position.line-1)
         if method_def.count("@Test") > 1:
             continue
 
-        methods.append((method, method_def, line_nums))
+        methods.append((method, method_def, line_nums, method.documentation))
 
-    
+
     return methods
 
 
@@ -286,12 +286,13 @@ def split_test(test, line_nums, assert_line_no=None):
     return split_tests, split_test_line_nums
 
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('test_corpus_dir')
     parser.add_argument('--bug_tests_only', action='store_true')
     parser.add_argument('--sample_5projects', action='store_true')
     parser.add_argument('--d4j_path', default='../defects4j/')
+    parser.add_argument('-o', '--output_dir', default='.')
     args = parser.parse_args()
 
     test_corpus_dir = args.test_corpus_dir
@@ -319,8 +320,8 @@ if __name__ == "__main__":
             if not match:
                 errs['file_name_not_matched'] += 1
                 continue
-            project = match.group(1) 
-            bug_num = match.group(2) 
+            project = match.group(1)
+            bug_num = match.group(2)
             class_path = match.group(3)
 
             if args.sample_5projects and not project in SAMPLE_PROJECTS:
@@ -387,7 +388,7 @@ if __name__ == "__main__":
             test_methods = extract_all_methods(class_dec, class_text)
             split_test_methods = []
             split_test_line_nums = []
-            for obj, test_method, line_nums in test_methods:
+            for obj, test_method, line_nums, _ in test_methods:
                 m2 = test_name_re.search(test_method)
                 if not m2:
                     errs['test_name_not_matched'] += 1
@@ -412,8 +413,11 @@ if __name__ == "__main__":
 
             assert(len(split_test_methods) == len(focal_methods))
             assert(len(split_test_methods) == len(split_test_line_nums))
-                
-            for test_method, focal_method, test_lines in zip(split_test_methods, focal_methods, split_test_line_nums):
+
+            for test_method, focal_method_docstring, test_lines in zip(split_test_methods, focal_methods, split_test_line_nums):
+                focal_method, docstring = "", ""
+                if focal_method_docstring:
+                    focal_method, docstring = focal_method_docstring
 
                 assertion = ''
                 try:
@@ -454,16 +458,16 @@ if __name__ == "__main__":
 
 
                 metadata += [(project, bug_num, full_test_name, exception_bug, assertion_bug, exception_lbl, assertion_lbl, error)]
-                input_data += [(focal_method, test_method)]
+                input_data += [(focal_method, test_method, docstring)]
 
     print('collected inputs:', len(input_data))
-    print('writing to inputs.csv and meta.csv')
+    print(f'writing to {args.output_dir}/inputs.csv and {args.output_dir}/meta.csv')
 
-    with open('inputs.csv', 'w') as f1, open('meta.csv', 'w') as f2:
+    with open(args.output_dir + '/inputs.csv', 'w') as f1, open(args.output_dir + '/meta.csv', 'w') as f2:
         input_w = csv.writer(f1)
         meta_w = csv.writer(f2)
 
-        input_w.writerow(['focal_method', 'test_prefix'])
+        input_w.writerow(['focal_method', 'test_prefix', 'docstring'])
         meta_w.writerow('project,bug_num,test_name,exception_bug,assertion_bug,exception_lbl,assertion_lbl,assert_err'.split(','))
 
         for input_pair, meta in zip(input_data, metadata):
