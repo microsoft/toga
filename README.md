@@ -37,6 +37,8 @@ Paring and extracting new sets of unit test inputs requires the tree sitter java
 
 Once the grammar is built in a `my-languages.so` file, place it in `/tmp/tree-sitter-repos/my-languages.so`
 
+A prebuilt `my-languages.so` for linux is provided in `lib/tree_sitter`.
+
 ### Defects4j setup (optional):
 If you want to build and execute defects4j tests, [defects4j](https://github.com/rjust/defects4j) must be installed.
 
