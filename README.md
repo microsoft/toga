@@ -9,48 +9,33 @@ Our artifact reproduces the results for all RQs in the paper's evaluation. The a
 ## Docker Setup
 For an easy setup, we recommend our docker container that includes all data, pretrained models, and source. Otherwise, follow the setup instructions in the next section.
 
-First, pull the docker image:    
-`docker pull edinella/toga-artifact`      
+First, pull the docker image:
+`docker pull edinella/toga-artifact`
 
-Connect to it: 
+Connect to it:
 `docker run -i -t edinella/toga-artifact`
 
-Then, setup some environment variables:    
-`export PATH=$PATH:/home/defects4j/framework/bin`    
+Then, setup some environment variables:
+`export PATH=$PATH:/home/defects4j/framework/bin`
 `export ATLAS_PATH=/home/icse2022_artifact/data/atlas---deep-learning-assert-statements/`
 
 ## Setup
 
 Requirements: `python3.9`, `git lfs`
 
-First, clone this repo and install the dependencies:    
+First, clone this repo and install the dependencies:
 ```
-cd toga/    
+cd toga/
 git lfs pull
 pip install -r requirements.txt
 git clone https://gitlab.com/cawatson/atlas---deep-learning-assert-statements.git
-export ATLAS_PATH=<path_to_atlas...>/atlas---deep-learning-assert-statements/  
+export ATLAS_PATH=<path_to_atlas...>/atlas---deep-learning-assert-statements/
 ```
 
+### Tree Sitter setup (optional):
+Paring and extracting new sets of unit test inputs requires the tree sitter java grammar. See https://github.com/tree-sitter/py-tree-sitter for instructions on building a tree sitter grammar and use 'vendor/tree-sitter-java'.
 
-## Models    
-If you're using our docker image, the pretrained models are in:
-```
-icse2022_artifact/model/assertions/pretrained/    
-icse2022_artifact/model/exceptions/pretrained/    
-```
-
-Otherwise, to install our exception and assertion pretrained models, download from: https://drive.google.com/drive/folders/1dZDxu92rZzB_LEwnAkkiy3DblxMJ6nUT?usp=sharing
-Put them in `model/exceptions/pretrained/pytorch_model.bin` and `model/assertions/pretrained/pytorch_model.bin` respectively. The models can also be downloaded from the artifact on zenodo: https://zenodo.org/record/6210589
-
-To train your own model, run 
-```
-cd model/exceptions/
-bash run_train.sh
-
-cd model/assertions/
-bash run_train.sh
-```
+Once the grammar is built in a `my-languages.so` file, place it in `/tmp/tree-sitter-repos/my-languages.so`
 
 ### Defects4j setup (optional):
 If you want to build and execute defects4j tests, [defects4j](https://github.com/rjust/defects4j) must be installed.
@@ -62,6 +47,25 @@ sudo apt install openjdk-8-jdk
 sudo apt install libdbd-csv-perl
 ```
 
+
+## Models
+If you're using our docker image, the pretrained models are in:
+```
+icse2022_artifact/model/assertions/pretrained/
+icse2022_artifact/model/exceptions/pretrained/
+```
+
+Otherwise, to install our exception and assertion pretrained models, download from: https://drive.google.com/drive/folders/1dZDxu92rZzB_LEwnAkkiy3DblxMJ6nUT?usp=sharing
+Put them in `model/exceptions/pretrained/pytorch_model.bin` and `model/assertions/pretrained/pytorch_model.bin` respectively. The models can also be downloaded from the artifact on zenodo: https://zenodo.org/record/6210589
+
+To train your own model, run
+```
+cd model/exceptions/
+bash run_train.sh
+
+cd model/assertions/
+bash run_train.sh
+```
 
 ## Datasets - Preprocessed
 Our approach is trained and evaluated on three datasets. The first, **Atlas\*** is an adaption of the [Atlas](https://gitlab.com/cawatson/atlas---deep-learning-assert-statements/) dataset. The preprocessed datasets **Atlas\*** and **Methods2Test\*** are included as `data/<DATASET>_star.tar.gz` files and be accessed by:
@@ -82,13 +86,13 @@ tar xzf evosuite_tests.tar.gz
 ```
 
 ## Evaluation
-In our paper, we evaluate three research questions (RQs). 
+In our paper, we evaluate three research questions (RQs).
 
 The following commands assume you are in the root of this directory.
 
 
 1. **RQ1: Is our grammar representative of most developer-written assertions?**
-   To evaluate this research question:    
+   To evaluate this research question:
    ``cd eval/rq1 && python rq1.py``
 
 2. **RQ2: Can we infer assertions and exceptional behavior with high accuracy?**
@@ -103,7 +107,7 @@ cd eval/rq2/exception_inference
 bash rq2.sh
 ```
 
-This script uses the pretrained exception model to predict whether a test is expected to trigger an exception or not, evaluated for accuracy and f1 score on the `methods2test_star` dataset. Note that the model used in the artifact has been retrained, so the results are slightly different from the submission (accuracy=85\% instead of 86\%, f1 score is 0.40 instead of 0.39). 
+This script uses the pretrained exception model to predict whether a test is expected to trigger an exception or not, evaluated for accuracy and f1 score on the `methods2test_star` dataset. Note that the model used in the artifact has been retrained, so the results are slightly different from the submission (accuracy=85\% instead of 86\%, f1 score is 0.40 instead of 0.39).
 
 To reproduce the weighted coin experiment in table 1, run:
 ```
@@ -118,7 +122,7 @@ cd eval/rq2/assertion_inference
 bash rq2.sh
 ```
 
-This script uses the pretrained assertion model to predict an assertion given a test prefix and method under test's signature. we evaluate for accuracy and f1 score on the `atlas_star` dataset. 
+This script uses the pretrained assertion model to predict an assertion given a test prefix and method under test's signature. we evaluate for accuracy and f1 score on the `atlas_star` dataset.
 
 3. **RQ3: Can we catch bugs with low false alarms?**
 
@@ -153,7 +157,7 @@ python toga.py data/evosuite_5project_tests/inputs.csv data/evosuite_5project_te
 
 ## References
 
-1. Tufano, Michele, et al. "Unit Test Case Generation with Transformers." arXiv preprint arXiv:2009.05617 (2020). 
+1. Tufano, Michele, et al. "Unit Test Case Generation with Transformers." arXiv preprint arXiv:2009.05617 (2020).
 
 ## Contributing
 
