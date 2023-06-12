@@ -6,4 +6,4 @@ scikit_learn==1.0.2
 tensorboardX==2.4.1
 torch==1.9.1
 tqdm==4.62.3
-transformers==4.15.0
+transformers==4.30.0
